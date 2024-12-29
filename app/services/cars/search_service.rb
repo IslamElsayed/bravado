@@ -4,6 +4,9 @@ module Cars
   class SearchService
     include Pagy::Backend
 
+    DEFAULT_PAGE = 1
+    DEFAULT_PER_PAGE = 20
+
     def initialize(user, params)
       @user = user
       @params = params
@@ -48,7 +51,7 @@ module Cars
     end
 
     def paginate_cars(cars)
-      _pagy, paginated_cars = pagy_array(cars, page: @params[:page] || 1, items: @params[:per_page] || 20)
+      _pagy, paginated_cars = pagy_array(cars, page: @params[:page] || DEFAULT_PAGE, items: @params[:per_page] || DEFAULT_PER_PAGE)
       paginated_cars
     end
 
